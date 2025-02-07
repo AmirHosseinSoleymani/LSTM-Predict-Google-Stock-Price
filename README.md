@@ -1,4 +1,5 @@
 # LSTM - Predict Google Stock Price
+-also:(Kaggle : https://www.kaggle.com/code/amirsoleymani/lstm-predict-google-stock-price )
 
 This project demonstrates the use of LSTM (Long Short-Term Memory) networks to predict Google stock prices. LSTM, a type of recurrent neural network (RNN), is ideal for time series forecasting due to its ability to capture long-term dependencies in data.
 
