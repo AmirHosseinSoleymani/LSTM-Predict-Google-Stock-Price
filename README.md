@@ -1,35 +1,103 @@
 # LSTM - Predict Google Stock Price
+
 -also:(Kaggle : https://www.kaggle.com/code/amirsoleymani/lstm-predict-google-stock-price )
 
-This project demonstrates the use of LSTM (Long Short-Term Memory) networks to predict Google stock prices. LSTM, a type of recurrent neural network (RNN), is ideal for time series forecasting due to its ability to capture long-term dependencies in data.
+This project demonstrates the application of Long Short-Term Memory (LSTM) networks to predict Google's stock prices. LSTMs, a type of recurrent neural network (RNN), are particularly well-suited for time series forecasting due to their ability to capture long-term dependencies in sequential data.
 
-The model is trained on historical stock data, including features like 'Open', 'Close', 'High', 'Low', and 'Volume'. The data is preprocessed using **MinMaxScaler**, which scales the data between 0 and 1, improving model convergence.
+## Table of Contents
 
-The **window sliding method** is employed to create sequences of past data (lookback period) to predict future stock prices. A sliding window helps structure data for time series forecasting.
+- [Introduction](#introduction)
+- [Data Collection](#data-collection)
+- [Data Preprocessing](#data-preprocessing)
+- [Model Architecture](#model-architecture)
+- [Training the Model](#training-the-model)
+- [Evaluation](#evaluation)
+- [Usage](#usage)
+- [Results](#results)
+- [Conclusion](#conclusion)
+- [License](#license)
 
-## Key Features:
-- **LSTM Model**: Used for time series prediction, capturing patterns over time.
-- **MinMaxScaler**: Normalizes the stock data to a range between 0 and 1.
-- **Window Sliding Method**: Converts historical data into sequential inputs for the LSTM model.
+## Introduction
 
-## Importing Required Libraries
+Predicting stock prices is a challenging task due to the volatile nature of financial markets. However, with the advent of deep learning techniques, especially LSTMs, it has become possible to model and predict stock price movements with reasonable accuracy. This project focuses on using LSTM networks to predict Google's stock prices by leveraging historical stock data.
 
-To build and train our LSTM model, we need several essential Python libraries:
+## Data Collection
 
-- **NumPy**: Provides support for large, multi-dimensional arrays and matrices, along with a collection of mathematical functions.
-- **Pandas**: Used for data manipulation and analysis, particularly useful for handling time-series stock market data.
-- **Matplotlib**: A visualization library for creating plots, which helps in analyzing and comparing stock prices.
-- **Scikit-learn (MinMaxScaler)**: Used for normalizing the dataset to bring all values between a specific range (0 to 1) to improve model performance.
-- **Keras (Sequential, LSTM, Dropout, Dense)**:
-  - `Sequential`: A linear stack of layers for building deep learning models.
-  - `LSTM`: Long Short-Term Memory, a specialized form of recurrent neural networks (RNN) designed for sequential data.
-  - `Dropout`: A regularization technique to prevent overfitting by randomly ignoring some neurons during training.
-  - `Dense`: A fully connected layer that serves as the output layer in our LSTM model.
+The dataset used in this project comprises historical stock data for Google, including features such as 'Open', 'Close', 'High', 'Low', and 'Volume'. This data can be obtained from financial data providers like Yahoo Finance or Alpha Vantage. For this project, we utilized the Yahoo Finance API to fetch the data.
 
-The following code imports all the necessary libraries:
+## Data Preprocessing
 
+Before feeding the data into the LSTM model, several preprocessing steps are performed:
 
-## License:
+1. **Normalization**: The stock data is normalized using `MinMaxScaler` from the `scikit-learn` library, scaling the data between 0 and 1. This step is crucial for improving the convergence of the model during training.
+
+2. **Window Sliding Method**: To create sequences of past data (lookback period) for predicting future stock prices, we employ the window sliding method. This approach structures the data into input-output pairs suitable for time series forecasting.
+
+## Model Architecture
+
+The LSTM model is built using the Keras library and follows a sequential architecture:
+
+- **Input Layer**: Accepts the input sequences.
+- **LSTM Layers**: Multiple LSTM layers with a specified number of units to capture temporal dependencies.
+- **Dropout Layers**: Added after each LSTM layer to prevent overfitting by randomly setting a fraction of input units to 0 during training.
+- **Dense Layer**: A fully connected layer that serves as the output layer, providing the predicted stock price.
+
+## Training the Model
+
+The model is compiled using the 'mean_squared_error' loss function and the 'adam' optimizer. Training is conducted over a specified number of epochs with a defined batch size. The training process involves:
+
+- Forward propagation through the network.
+- Backpropagation to update the weights based on the loss.
+- Validation against a separate validation set to monitor performance and prevent overfitting.
+
+## Evaluation
+
+After training, the model's performance is evaluated using metrics such as Mean Squared Error (MSE) and Root Mean Squared Error (RMSE). Additionally, visualizations are created to compare the predicted stock prices against the actual prices, providing insights into the model's accuracy.
+
+## Usage
+
+To replicate this project:
+
+1. **Clone the Repository**:
+
+   ```bash
+   git clone https://github.com/AmirHosseinSoleymani/LSTM-Predict-Google-Stock-Price.git
+   cd LSTM-Predict-Google-Stock-Price
+   ```
+
+2. **Install Required Libraries**:
+
+   Ensure you have the following Python libraries installed:
+
+   - `numpy`
+   - `pandas`
+   - `matplotlib`
+   - `scikit-learn`
+   - `keras`
+   - `yfinance`
+
+   You can install them using `pip`:
+
+   ```bash
+   pip install numpy pandas matplotlib scikit-learn keras yfinance
+   ```
+
+3. **Run the Jupyter Notebook**:
+
+   Open and execute the `lstm-predict-google-stock-price.ipynb` notebook to train the model and make predictions.
+
+## Results
+
+The model's predictions are visualized alongside the actual stock prices to assess performance. The visualizations indicate the model's capability to capture the general trend of the stock prices, with some deviations during highly volatile periods.
+
+## Conclusion
+
+This project illustrates the effectiveness of LSTM networks in predicting stock prices. While the model captures the overall trend, it's important to note that stock price prediction remains inherently uncertain due to market volatility. Further improvements can be achieved by incorporating additional features, tuning hyperparameters, and exploring more advanced architectures.
+
+## License
+
 This project is licensed under the MIT License.
 
 ---
+
+Feel free to customize this README further to align with your project's specifics and any additional insights you wish to convey. 
